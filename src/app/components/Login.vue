@@ -19,7 +19,7 @@
         </div>
       </div><br />
       <div class="form-group">
-        <button class="btn btn-primary">Add Item</button>
+        <button class="btn btn-primary">Login</button>
       </div>
     </form>
   </div>
@@ -36,11 +36,12 @@
     },
     methods: {
       addItem(){
-        let uri = 'http://localhost:3014/items/';
+        let uri = 'http://localhost:4000/item/add';
         this.axios.post(uri, this.item).then((response) => {
           console.log(response);
           toastr.success(response.data.item, 'Response');
-          this.$router.replace({ name: 'CreateItem'})
+          this.$router.replace({ name: 'Profile'})
+
         });
       }
     }

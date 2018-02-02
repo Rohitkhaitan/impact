@@ -6,11 +6,7 @@ module.exports = {
     path: path.join(__dirname, 'src/public/js'),
     filename: 'bundle.js'
   },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.js'
-    }
-  },
+  
   module: {
     loaders: [
       {
@@ -28,6 +24,6 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 3000
+    port: 3001
   }
 };

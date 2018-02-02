@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <router-link :to="{ name: 'Registration' }" class="navbar-brand">
-        VuejsNode
+      impact
       </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,12 +10,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <router-link :to="{ name: 'CreateItem' }" class="nav-link">
-              Create
+            <router-link :to="{ name: 'Login' }" class="nav-link">
+              Login
             </router-link>
           </li>
         </ul>
       </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <router-link :to="{ name: 'Registration' }" class="nav-link">
+              Register
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
     </nav>
     <!-- CONTENT -->
     <div class="container">

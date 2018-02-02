@@ -6,8 +6,13 @@ var Item = new Schema({
   password: { type: String, required: true},
   gender: { type: String, required: true},
   country: {type: String, required: true},
-  name: { type: String },
-  price: { type: Number }
+  image: { data: Buffer, contentType: String },
+
+  address: { type: String},
+  DOB: { type: String},
+  mobile: { type: String},
+  addhar: { type: String }
+
 },{
     collection: 'items'
 });

@@ -14,26 +14,39 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Password:</label>
-            <input type="text" class="form-control col-md-6" v-model="item.password" placeholder="password">
+            <input type="password" class="form-control" v-model="item.password" placeholder="password" required/>
           </div>
         </div>
-      </div><br/>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label>Gender:</label>
-            <md-radio v-model="item.radio" value="Male">Male </md-radio>
-            <md-radio v-model="item.radio" value="Female" class="md-primary">Female</md-radio>
-            <md-radio v-model="item.radio" value="Other" class="md-primary">Other</md-radio>
+            <input type="radio" v-model="item.gender" name= "gender" value="Male" checked/>Male<br/>
+            <input type="radio" v-model="item.gender" name= "gender" value="Female" >Female<br/>
+            <input type="radio" v-model="item.gender" name= "gender" value="Other" >Other<br/>
           </div>
         </div>
-      </div><br/>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label>Country:</label>
-            <md-autocomplete v-model="item.selectedCountry" :md-options="countries" required/>
-            </md-autocomplete>
+            <select name=country class="form-control col-md-6" v-model="item.country" >
+              <option value="australia" >Australia</option>
+              <option value="brazil">Bazil</option>
+              <option value="india">India</option>
+              <option value="japan">Japan</option>
+              <option value="united states" >United States</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Image:</label>
+              <input type="file" v-on:change="fileChange($event.target.files)" name="image" accept="image/*" required/>
           </div>
         </div>
       </div><br/>
@@ -54,8 +67,13 @@
       }
     },
     methods: {
+      fileChange(fileList) {
+                  this.files.append("file", fileList[0]);
+
+                  this.item.image = this.files;
+            },
       addItem(){
-        let uri = 'http://localhost:3014/items/add';
+        let uri = 'http://localhost:4000/items/add';
         this.axios.post(uri, this.item).then((response) => {
           console.log(response);
           toastr.success(response.data.item, 'Response');
@@ -65,36 +83,3 @@
     }
   }
   </script>
-  <script>
-  export default {
-    name: 'AutocompleteTrigger',
-    data: () => ({
-      selectedCountry: null
-      countries: [
-        'Algeria',
-        'Argentina',
-        'Brazil',
-        'Canada',
-        'Italy',
-        'India',
-        'Japan',
-        'United Kingdom',
-        'United States'
-      ]
-      })
-      </script>
-
-      <script>
-  export default {
-    name: 'RadioHueColors',
-    data: () => ({
-      radio: 'Male'
-    })
-  }
-</script>
-
-<style >
-  .md-radio {
-    display: flex;
-  }
-</style>
