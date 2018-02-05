@@ -6,7 +6,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Username:</label>
-            <input type="text" class="form-control" v-model="item.username" placeholder="username" required/>
+            <input type="text" class="form-control" v-model="username" placeholder="username" required/>
           </div>
         </div>
       </div>
@@ -14,7 +14,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Password:</label>
-            <input type="text" class="form-control col-md-6" v-model="item.password" placeholder="password" required/>
+            <input type="password" class="form-control col-md-6" v-model="password" placeholder="password" required/>
           </div>
         </div>
       </div><br />
@@ -36,11 +36,11 @@
     },
     methods: {
       addItem(){
-        let uri = 'http://localhost:4000/item/add';
+        let uri = 'http://localhost:4005/items/login';
         this.axios.post(uri, this.item).then((response) => {
           console.log(response);
           toastr.success(response.data.item, 'Response');
-          this.$router.replace({ name: 'Profile'})
+          this.$router.replace({ name: 'Display'})
 
         });
       }

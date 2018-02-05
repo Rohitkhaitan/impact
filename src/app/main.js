@@ -7,22 +7,16 @@ import axios from 'axios';
 Vue.use(VueAxios, axios);
 
 import App from './App.vue';
-import Home from './components/Home.vue';
 import Registration from './components/Registration.vue';
 import Login from './components/Login.vue';
-import CreateItem from './components/Profile.vue';
+import Display from './components/Display.vue';
 
 
 
 const routes = [
   {
-    name: 'Home',
-    path: '/',
-    component: Home
-  },
-  {
     name: 'Registration',
-    path: '/registration',
+    path: '/',
     component: Registration
   },
 
@@ -33,11 +27,10 @@ const routes = [
   },
 
   {
-    name: 'Profile',
-    path: '/profile',
-    component: Profile
-  },
-
+    name: 'Display',
+    path: '/display',
+    component: Display
+  }
 ];
 
 const router = new VueRouter({ mode: 'history', routes: routes });

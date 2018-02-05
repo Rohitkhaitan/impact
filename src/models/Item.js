@@ -8,10 +8,11 @@ var Item = new Schema({
   country: {type: String, required: true},
   image: { data: Buffer, contentType: String },
 
-  address: { type: String},
-  DOB: { type: String},
-  mobile: { type: String},
-  addhar: { type: String }
+  address:{type:String},
+  dob:{type:Date},
+  addhar:{type:Number},
+  mobile:{type:Number}
+
 
 },{
     collection: 'items'

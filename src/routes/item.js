@@ -4,7 +4,7 @@ const itemRoutes = require('express').Router();
 var Item = require('../models/Item');
 
 // Defined store route
-itemRoutes.route('/add').post((req, res, next) => {
+itemRoutes.route('/register').post((req, res, next) => {
     var item = new Item(req.body);
     item.save()
     .then(item => {
@@ -16,6 +16,27 @@ itemRoutes.route('/add').post((req, res, next) => {
   });
 
 // Defined get data(index or listing) route
+itemRoutes.route('/login').post(function (req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+
+
+  Item.findOne({username: username, password: password},function (err, items){
+
+    if(err){
+      console.log(err);
+      console.log("%s",username);
+    }
+    if(!items){
+      console.log(err);
+      console.log("%s",password)
+    }
+    else {
+      res.status(200).json(items);
+    }
+  });
+});
+
 itemRoutes.route('/').get(function (req, res) {
   Item.find(function (err, items){
     if(err){
@@ -60,7 +81,7 @@ itemRoutes.route('/delete/:id').get(function (req, res) {
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
-    
+
 });
 
 module.exports = itemRoutes;

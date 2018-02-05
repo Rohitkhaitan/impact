@@ -73,7 +73,7 @@
                   this.item.image = this.files;
             },
       addItem(){
-        let uri = 'http://localhost:4000/items/add';
+        let uri = 'http://localhost:4005/items/register';
         this.axios.post(uri, this.item).then((response) => {
           console.log(response);
           toastr.success(response.data.item, 'Response');

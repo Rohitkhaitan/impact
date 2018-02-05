@@ -2,7 +2,7 @@
   <div>
     <h1>Profile </h1>
 
-    <form v-on:submit.prevent="UpdateItem" style="Enable">
+    <form v-on:submit.prevent="UpdateItem" v-if="show">
     <h3>Pls add your details</h3>
       <div class="row">
         <div class="col-md-6">
@@ -17,7 +17,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>DOB</label>
-            <input type="date" class="form-control" v-model="item.DOB">
+            <input type="date" class="form-control" v-model="item.dob">
           </div>
         </div>
       </div>
@@ -38,12 +38,12 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" @click="show=!show">Submit</button>
       </div>
     </form>
-  </div>
 
-  <table class="table table-hover table-bordered" style="disable">
+
+  <table class="table table-hover table-bordered" v-else>
       <thead>
         <tr>
           <td>Username</td>
@@ -58,7 +58,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="item in id">
+        <tr v-for="item in item">
           <td>{{ item.username }}</td>
           <td>{{ item.gender }}</td>
           <td>{{ item.country }}</td>
@@ -68,13 +68,14 @@
           <td>{{ item.address}}</td>
           <td>{{ item.image}}</td>
           <td>
-            <router-link :to="{ name: 'EditItem', params: {id: item._id} }" class="btn btn-primary">
+            <button class="btn btn-primary" @click="show= show" >
               Edit
-            </router-link>
+          </button>
           </td>
         </tr>
       </tbody>
     </table>
+    </div>
 </template>
 
 <script>
@@ -82,6 +83,7 @@
 
   export default {
     data(){
+    show: true;
       return{
         item:{}
       }
@@ -89,10 +91,11 @@
     methods: {
       updateItem()
       {
-      let uri = 'http://localhost:3013/items/update/' + this.$route.params.id;
+      let uri = 'http://localhost:4000/items/update/' + this.$route.params.id;
       this.axios.post(uri, this.item).then((response) => {
-      this.$router.push({name: 'DisplayItem'});
+      this.$router.push({name: 'Profil'});
     });
     }
+  }
   }
   </script>
